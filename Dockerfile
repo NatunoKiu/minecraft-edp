@@ -1,11 +1,8 @@
-FROM docker.io/library/fedora:latest
-RUN dnf update -y && \
-    dnf install java-17-openjdk -y
+FROM ubuntu:latest
+RUN apt-get -y update && \
+    apt-get -y install openjdk-17-jdk
 
-RUN mkdir /home/forge-1.20.2
-WORKDIR /home/forge-1.20.2
+RUN mkdir /home/forge
+WORKDIR /home/forge
 
-COPY ./forgeEDP/* ./
-RUN chmod 777 -R ./run.sh
-
-CMD ["./run.sh"]
+CMD ./run.sh
